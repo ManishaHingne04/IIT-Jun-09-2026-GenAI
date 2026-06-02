@@ -1,0 +1,123 @@
+Q1: 
+Write a Python program that:
+
+Accepts a paragraph from the user.
+Converts text to lowercase.
+Removes punctuation.
+Counts:
+Total characters
+Total words
+Total vowels
+Displays the frequency of each word.
+
+
+Q2:
+Write a Python program that takes a sentence from the user and prints:
+
+Number of characters
+
+Number of words
+
+Number of vowels
+
+Hint: Use split(), loops, and vowel checking.
+
+Q3:
+
+Count Even and Odd Numbers
+
+Take a list of numbers as input (comma-separated).
+
+Count how many are even and how many are odd.
+
+Print results.
+
+Example Input:
+10, 21, 4, 7, 8
+
+Q4:
+Given a CSV file Products.csv with columns:
+Write a Python program to:
+
+a) Read the CSV
+
+b) Print each row in a clean format
+
+c) Total number of rows
+
+d) Total number of products priced above 500
+e) Average price of all products
+f) List all products belonging to a specific category (user input)
+g) Total quantity of all items in stock
+
+Q5:  
+Connect Python to LM Studio(Create a Simple Chatbot)
+
+Objective
+1. Download model onto LM studio
+1. Connects to LM Studio.
+2. Sends a prompt.
+3. Prints the response.
+4. Save LLM Responses to a File
+5. Ask the LLM 5 questions and save all responses into a text file.
+
+Task 1: Install LM Studio
+1. Download and install LM Studio.
+2. Open LM Studio.
+3. Go to Discover.
+4. Download any small model (for example:
+      i) Gemma 3 1B
+      ii) Qwen 2.5 1.5B
+      iii) Phi-3 Mini)
+
+Task 2: Load the Model
+1. Open the downloaded model.
+2. Click Load Model.
+3. Verify that the model loads successfully.
+
+Task 3: Start Local API Server
+1. Open the Developer tab.
+2. Start the Local Server.
+3. Verify that the server is running at:
+               http://localhost:1234
+
+Task 4: Install Required Packages
+
+Open terminal and run:
+
+   pip install openai
+
+
+Task 5: Run Python Program
+
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://localhost:1234/v1",
+    api_key="lm-studio"
+)
+
+response = client.chat.completions.create(
+    model="local-model",
+    messages=[
+        {
+            "role": "user",
+            "content": "What is Generative AI?"
+        }
+    ]
+)
+
+print(response.choices[0].message.content)
+
+
+Task 6: Change the Prompt
+
+Modify the code and ask the following questions one by one:
+
+What is Python?
+What is Machine Learning?
+What is Artificial Intelligence?
+What is Data Science?
+Explain NLP in simple words.
+
+Task 7: Save Responses to a File

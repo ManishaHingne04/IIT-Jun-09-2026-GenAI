@@ -1,0 +1,83 @@
+1.  i) Create a list of empids and names (10 employees).
+    ii) Convert list into Series.
+    iii) Print type of Series.
+    iv) Convert Series into DataFrame.
+    v) a) Display all records.
+       b) Display first five records.
+       c) Display last five records.
+       d) Display first two and last two records.
+       e) Display name of 5th employee.
+       f) Display record of 4th employee.
+    vi) Save the record in csv file (MyRecord.csv)
+
+2. Refer the dataset "Advertising.csv" and perform following tasks.
+i) Read the dataset "Advertising.csv" in data frame.
+
+ii) Print first five records of dataset.
+
+iii) print last five records from dataset.
+
+iv) display the columns inside the dataset.
+
+v) display last three records from dataset.
+
+vi) display the information about the dataset and analyse the data.
+
+vii) display types of each columns.
+ 
+viii) check for null values in the dataset and display the sum of null values inside the column.
+
+ix) drop a column 'radio' from a dataset and display first ten records.
+
+x) increase the sales by 10% and add a new column "updated_sales" in dataframe.
+
+xi) display shape of data.
+
+xii) Find out maximum,minimum,mean,median,standard deviation value of each column.
+ 
+xiii) describe the dataset.
+
+3. Refer the dataset "Salaries.csv" and perform following tasks.
+i) Read the dataset in dataframe.
+
+ii) display first five records.
+
+iii) display first ten records.
+
+iv) display last five records.
+
+v) display last ten records.
+
+vi) display the columns inside the dataset.
+
+vii) display shape of data.
+
+viii) describe the dataset.
+
+ix) display the information about the dataset and analyse the data.
+
+x) display types of each columns.
+
+xi) Find out maximum,minimum,mean,median,standard deviation value of each column.
+
+xii) check for null values in the dataset and display the sum of null values inside the column.
+
+xiii) drop all null values.
+
+xiv) a) display records whose salary is greater than 50000.
+     b) display records whose salary is less than 20000.
+     c) display records whose salary is between 20000 to 50000.
+     d) display records whose salary is greater than 100000.
+     e) display records whose salary is less than 100000.
+
+xv)  a) display records whose discipline is A.
+     b) display records whose discipline is B.
+     c) display records whose service is greater than 10.
+     d) display records whose service is less than 5.
+
+xvi) a) display records of phd and salary.
+     b) display records of rank, sex and salary.
+     c) display records without salary.
+     d) display first 50 records with rank,service and salary.
+     e) display records whose rank is Prof.
+     f) display records whose rank is AssocProf.
