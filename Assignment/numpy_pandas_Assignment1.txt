@@ -58,8 +58,6 @@ ix) display the information about the dataset and analyse the data.
 
 x) display types of each columns.
 
-xi) Find out maximum,minimum,mean,median,standard deviation value of each column.
-
 xii) check for null values in the dataset and display the sum of null values inside the column.
 
 xiii) drop all null values.
