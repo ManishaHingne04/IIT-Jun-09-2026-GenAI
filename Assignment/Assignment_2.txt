@@ -1,0 +1,88 @@
+Q1: Create a GenAI application that generates interview questions.
+
+Requirements
+
+1. Ask the user for:
+     i)  Technology Name
+     ii) Experience Level
+2. Use a ChatPromptTemplate to create a prompt dynamically.
+3. Example Input:
+
+        i) Technology: Python
+        ii) Level: Fresher
+
+4. Prompt:
+
+          Generate 10 interview questions for a Fresher in Python.
+
+5. Display questions on screen.
+
+6. Save questions to a file:
+
+         Python_Fresher_Interview.txt
+7. Allow the user to generate questions for multiple technologies in a loop.
+
+8. The application should terminate when the user enters:
+
+                  quit
+
+Q2:
+Generate MCQs from a topic.
+
+Requirements
+
+i)   Input:
+
+        Topic: Python
+        Difficulty: Intermediate
+        Number of Questions: 10
+
+ii)  Output:
+
+     Q1
+     A.
+     B.
+     C.
+     D.
+     Answer:
+     Bonus
+
+iii) Save quiz in JSON format.
+
+Example:
+
+[
+ {
+  "question":"What is Python?",
+  "options":["A","B","C","D"],
+  "answer":"A"
+ }
+]
+
+
+Q3:
+
+Create a GenAI-powered Course Recommendation System that suggests the most suitable course based on a user's skills, career goals, and experience level.
+
+Requirements
+1. Connect your Python application to an LLM running in LM Studio.
+
+2. Maintain the following list of available courses:
+
+       Python
+       Java
+       Machine Learning
+       Deep Learning
+       Big Data
+3. Ask the user to enter(take user input ):
+    i) Current Skills
+    ii) Career Goal
+    iii) Experience Level (Beginner / Intermediate / Advanced)
+4. Generate a prompt dynamically using the user's inputs.
+5. The LLM should recommend:
+      Best Course
+      Reason for Recommendation
+      Learning Path (Step-by-Step)
+      Estimated Duration
+      Projects to Build
+6. Display the recommendation on the screen.
