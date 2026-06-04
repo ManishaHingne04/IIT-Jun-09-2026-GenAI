@@ -1,0 +1,60 @@
+from langchain_groq import ChatGroq
+from langchain.prompts import ChatPromptTemplate
+from dotenv import load_dotenv
+import os
+
+# Load API key from .env file (recommended)
+load_dotenv()
+
+# Groq LLM Setup
+llm = ChatGroq(
+    model_name="llama-3.1-8b-instant",   # or llama-3.1-70b-versatile
+    temperature=0.7,
+    api_key=os.getenv("GROQ_API_KEY")
+)
+
+# Prompt Template
+template = """
+Generate 10 interview questions for a {level} in {technology}.
+
+Rules:
+1. Only generate questions.
+2. Number each question.
+3. Do not provide answers.
+"""
+
+prompt_template = ChatPromptTemplate.from_template(template)
+
+while True:
+
+    technology = input("\nEnter Technology Name (or quit): ")
+
+    if technology.lower() == "quit":
+        print("Exiting...")
+        break
+
+    level = input("Enter Experience Level (Fresher/Intermediate/Experienced): ")
+
+    # Create Prompt
+    prompt = prompt_template.invoke({
+        "technology": technology,
+        "level": level
+    })
+
+    print("\nGenerating Interview Questions...\n")
+
+    # Get Response from Groq
+    response = llm.invoke(prompt)
+
+    questions = response.content
+
+    # Display Questions
+    print(questions)
+
+    # Save to File
+    filename = f"{technology}_{level}_Interview.txt"
+
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(questions)
+
+    print(f"\nQuestions saved to: {filename}")
