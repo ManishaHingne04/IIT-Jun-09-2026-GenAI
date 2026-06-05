@@ -11,8 +11,8 @@ Q2: Create a Streamlit-based GenAI application that generates interview question
 *Requirements*
 1. Create a Streamlit user interface.
 2. Ask the user for:
-      Technology Name
-      Experience Level (Fresher, Intermediate, Experienced)(select using dropdown)
+      Technology Name( st.text_input)
+      Experience Level (Fresher, Intermediate, Experienced)(select using dropdown)(use st.selectbox)
 
 3. Connect to the Groq LLM using the langchain_groq library.
 4. Generate 10 interview questions based on the user's input.
