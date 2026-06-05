@@ -1,0 +1,26 @@
+Q1:
+Create a Streamlit-based chatbot application where the user can input a question using a chat-style interface.
+Connect the app to a Groq LLM using LangChain to generate responses.
+Ensure the LLM reply is formatted in exactly 2 bullet points only.
+Display the response using st.write_stream() to simulate a typing (streaming) effect.(check Expected UI Screenshot shared on Assignment folder)
+
+
+Q2: Create a Streamlit-based GenAI application that generates interview questions based on the technology and experience level entered by the user.(check Expected UI Screenshot shared on Assignment folder)
+
+
+*Requirements*
+1. Create a Streamlit user interface.
+2. Ask the user for:
+      Technology Name
+      Experience Level (Fresher, Intermediate, Experienced)(select using dropdown)
+
+3. Connect to the Groq LLM using the langchain_groq library.
+4. Generate 10 interview questions based on the user's input.
+5. Display the generated interview questions on the screen.
+
+6. Use a dynamic prompt such as:
+
+     Generate 10 interview questions for a Fresher in Python.
+     Return only the questions in numbered format.
+
+
