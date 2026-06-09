@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>resume.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="allan-kulkarni"><strong>Allan Kulkarni</strong></h1>
+<p>📍 Pune, India | 📧 allan.kulkarni@email.com | 📱 +91-9876543210<br>
+💼 <a href="https://linkedin.com/in/allankulkarni">LinkedIn</a> | 🌐 <a href="https://github.com/allankulkarni">GitHub</a></p>
+<hr>
+<h2 id="summary"><strong>Summary</strong></h2>
+<p>Seasoned <strong>Software Developer &amp; DevOps Engineer</strong> with over <strong>20 years of experience</strong> in architecting, developing, automating, and optimizing large-scale systems across diverse industries. Expertise spans <strong>cloud computing, CI/CD pipelines, containerization, automation, full-stack development, and infrastructure as code</strong>. Adept at leading cross-functional teams, implementing Agile practices, and mentoring developers. Holder of multiple <strong>industry-recognized certifications</strong> in cloud, DevOps, and programming.</p>
+<hr>
+<h2 id="core-competencies"><strong>Core Competencies</strong></h2>
+<ul>
+<li><strong>Programming &amp; Development:</strong> Java, Python, Go, Node.js, React, Angular, PHP, C++</li>
+<li><strong>DevOps &amp; Cloud:</strong> Kubernetes, Docker, Jenkins, Ansible, Terraform, GitLab CI, AWS, Azure, GCP</li>
+<li><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, Redis, Cassandra</li>
+<li><strong>Automation &amp; Monitoring:</strong> Prometheus, Grafana, ELK Stack, Splunk, Nagios</li>
+<li><strong>Methodologies:</strong> Agile, Scrum, Kanban, Test-Driven Development (TDD)</li>
+<li><strong>Other Skills:</strong> System Design, Microservices Architecture, Security &amp; Compliance, Team Leadership</li>
+</ul>
+<hr>
+<h2 id="certifications"><strong>Certifications</strong></h2>
+<ul>
+<li>AWS Certified Solutions Architect – Professional</li>
+<li>Certified Kubernetes Administrator (CKA)</li>
+<li>Certified Kubernetes Application Developer (CKAD)</li>
+<li>Microsoft Certified: Azure Solutions Architect Expert</li>
+<li>Google Professional Cloud DevOps Engineer</li>
+<li>HashiCorp Certified: Terraform Associate</li>
+<li>Red Hat Certified Engineer (RHCE)</li>
+<li>Certified Scrum Master (CSM)</li>
+<li>Oracle Certified Java Professional (OCPJP)</li>
+</ul>
+<hr>
+<h2 id="professional-experience"><strong>Professional Experience</strong></h2>
+<h3 id="cloudwave-technologies-pune-india"><strong>CloudWave Technologies (Pune, India)</strong></h3>
+<p><em>Principal DevOps Architect</em><br>
+<strong>2015 – Present</strong></p>
+<p><strong>Key Achievements:</strong></p>
+<ul>
+<li>Led a team of 25 engineers to design and deploy a <strong>multi-cloud infrastructure</strong> serving over <strong>15M active users</strong>.</li>
+<li>Designed <strong>Kubernetes-based microservices architecture</strong>, reducing infrastructure cost by <strong>35%</strong>.</li>
+<li>Implemented <strong>end-to-end CI/CD pipelines</strong> using Jenkins, GitLab, and ArgoCD, cutting release cycles from weeks to hours.</li>
+<li>Spearheaded <strong>disaster recovery automation</strong>, achieving <strong>99.99% uptime SLA</strong>.</li>
+<li>Mentored 50+ developers on <strong>DevOps best practices</strong>, contributing to a strong internal knowledge base.</li>
+</ul>
+<p><strong>Major Projects:</strong></p>
+<ul>
+<li><strong>FinTech Cloud Migration:</strong> Migrated a legacy payment processing system to AWS with full PCI-DSS compliance.</li>
+<li><strong>Retail Platform Scaling:</strong> Scaled an e-commerce system for a festive sale, handling <strong>3x peak traffic</strong> without downtime.</li>
+<li><strong>IoT Device Management:</strong> Designed a real-time data ingestion pipeline for IoT devices using Kafka, Spark, and Kubernetes.</li>
+</ul>
+<hr>
+<h3 id="nexora-systems-pune-india"><strong>Nexora Systems (Pune, India)</strong></h3>
+<p><em>Senior Software &amp; DevOps Engineer</em><br>
+<strong>2008 – 2015</strong></p>
+<p><strong>Key Achievements:</strong></p>
+<ul>
+<li>Built <strong>high-performance APIs</strong> using Java &amp; Python that processed <strong>millions of daily transactions</strong>.</li>
+<li>Automated infrastructure provisioning with <strong>Terraform &amp; Ansible</strong>, reducing setup time by <strong>80%</strong>.</li>
+<li>Integrated <strong>monitoring and alerting systems</strong> with Prometheus &amp; Grafana, improving incident response time by <strong>50%</strong>.</li>
+<li>Championed <strong>Agile adoption</strong>, improving project delivery and stakeholder satisfaction.</li>
+</ul>
+<p><strong>Major Projects:</strong></p>
+<ul>
+<li><strong>Banking System Revamp:</strong> Modernized a banking core system into a <strong>microservices architecture</strong>.</li>
+<li><strong>Healthcare Data Platform:</strong> Built a HIPAA-compliant data storage and analytics platform.</li>
+<li><strong>Telecom Automation:</strong> Automated telecom provisioning systems for faster onboarding of new customers.</li>
+</ul>
+<hr>
+<h3 id="infinisoft-solutions-pune-india"><strong>InfiniSoft Solutions (Pune, India)</strong></h3>
+<p><em>Software Developer → Lead Engineer</em><br>
+<strong>2003 – 2008</strong></p>
+<p><strong>Key Achievements:</strong></p>
+<ul>
+<li>Started career as a <strong>full-stack developer</strong> and grew into a <strong>lead engineer role</strong>.</li>
+<li>Developed <strong>enterprise-grade ERP modules</strong> in Java &amp; .NET.</li>
+<li>Led a small team to build <strong>mobile-first solutions</strong> when smartphones were first emerging.</li>
+<li>Introduced <strong>version control (SVN → Git)</strong> and coding standards across teams.</li>
+</ul>
+<p><strong>Major Projects:</strong></p>
+<ul>
+<li><strong>ERP Implementation:</strong> Built HR, Payroll, and Finance modules for manufacturing clients.</li>
+<li><strong>Early SaaS Platform:</strong> Contributed to one of the company’s first SaaS products.</li>
+<li><strong>Insurance Claim Automation:</strong> Reduced claim settlement time from weeks to days via a workflow automation system.</li>
+</ul>
+<hr>
+<h2 id="education"><strong>Education</strong></h2>
+<ul>
+<li><strong>Bachelor of Engineering in Computer Science</strong><br>
+Savitribai Phule Pune University, 2003</li>
+</ul>
+<hr>
+<h2 id="community-involvement--contributions"><strong>Community Involvement &amp; Contributions</strong></h2>
+<ul>
+<li>Speaker at <strong>DevOps India Summit, CloudNext Pune, Kubernetes Pune Meetup</strong></li>
+<li>Contributed to <strong>open-source DevOps tools</strong> (Helm charts, Terraform modules, Jenkins pipelines)</li>
+<li>Mentor on <strong>LinkedIn Learning &amp; Udemy</strong> for cloud-native technologies</li>
+</ul>
+<hr>
+<h2 id="sample-tech-stack-exposure"><strong>Sample Tech Stack Exposure</strong></h2>
+<ul>
+<li><strong>Languages:</strong> Java, Python, Go, JavaScript, TypeScript, PHP</li>
+<li><strong>Frameworks:</strong> Spring Boot, Express.js, React.js, Angular</li>
+<li><strong>Cloud:</strong> AWS, Azure, GCP</li>
+<li><strong>CI/CD:</strong> Jenkins, GitHub Actions, GitLab CI, ArgoCD</li>
+<li><strong>IaC &amp; Config Mgmt:</strong> Terraform, Ansible, Chef, Puppet</li>
+<li><strong>Containers:</strong> Docker, Kubernetes, OpenShift</li>
+</ul>
+<hr>
+<h2 id="personal-details"><strong>Personal Details</strong></h2>
+<ul>
+<li><strong>Name:</strong> Allan Kulkarni</li>
+<li><strong>Location:</strong> Pune, Maharashtra, India</li>
+<li><strong>Languages:</strong> English, Hindi, Marathi</li>
+<li><strong>Hobbies:</strong> Blogging about DevOps trends, contributing to open-source, mentoring developers</li>
+</ul>
+
+</body>
+</html>
