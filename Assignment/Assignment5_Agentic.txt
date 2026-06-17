@@ -1,0 +1,9 @@
+Problem Statement
+
+Develop a Multi-Agent AI Assistant using LangChain and Tool Calling that can intelligently analyze user queries, dynamically select the appropriate agent, execute the corresponding tool, and generate a natural language response.
+
+The system should support the following agents:
+
+1) Calculator Agent – Performs mathematical calculations.
+2) Currency Converter Agent – Converts one currency into another.
+3) News Agent – Provides the latest news based on a given topic.
