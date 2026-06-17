@@ -1,0 +1,55 @@
+Example: Resume Shortlisting Agents
+1. Resume Retrieval Agent
+Searches ChromaDB/FAISS.
+Finds relevant resumes based on the job description.
+Input: "Need Python Developer"
+Output: Top matching resumes
+2. Skills Extraction Agent
+Extracts technical and soft skills from resumes.
+Resume:
+Python, SQL, Docker, AWS
+
+Output:
+Skills = [Python, SQL, Docker, AWS]
+3. Experience Analysis Agent
+Determines years of experience.
+Identifies previous roles.
+Output:
+Experience = 5 years
+Roles = Data Analyst, ML Engineer
+4. Education Verification Agent
+Extracts degree, college, certifications.
+Output:
+B.Tech Computer Engineering
+AWS Certification
+5. Resume Ranking Agent
+Compares candidates against the job description.
+Assigns scores.
+Candidate A = 92%
+Candidate B = 85%
+Candidate C = 78%
+6. HR Report Agent
+Generates a human-readable summary.
+Top Candidate:
+John Doe
+
+Skills:
+Python, ML, AWS
+
+Experience:
+6 Years
+7. Interview Question Generator Agent
+Creates candidate-specific interview questions.
+Candidate knows:
+Python, Spark
+
+Questions:
+1. Explain Spark architecture.
+2. Difference between threading and multiprocessing.
+8. Salary Estimation Agent
+Estimates salary range based on skills and experience.
+Experience: 5 years
+Skills: Python, AWS
+
+Estimated Salary:
+₹10–15 LPA
