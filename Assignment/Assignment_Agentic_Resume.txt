@@ -1,0 +1,4 @@
+Create an Agentic RAG-based recruitment assistant that enables HR teams to manage resumes and generate candidate recommendations through semantic search and AI-driven resume analysis(Resume Assignment using Agentic)
+
+Tools 
+1)get_top_resumes
