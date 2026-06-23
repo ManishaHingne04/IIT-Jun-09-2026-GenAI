@@ -1,0 +1,111 @@
+import requests
+import os
+
+
+def json_to_text(data, indent=0):
+    text = ""
+    space = " " * indent
+
+    if isinstance(data, dict):
+        for key, value in data.items():
+
+            if isinstance(value, dict):
+                text += f"{space}{key}:\n"
+                text += json_to_text(value, indent + 4)
+
+            elif isinstance(value, list):
+                text += f"{space}{key}:\n"
+
+                for item in value:
+                    if isinstance(item, (dict, list)):
+                        text += json_to_text(item, indent + 4)
+                    else:
+                        text += f"{space}    - {item}\n"
+
+            else:
+                text += f"{space}{key}: {value}\n"
+
+    elif isinstance(data, list):
+        for item in data:
+            if isinstance(item, (dict, list)):
+                text += json_to_text(item, indent)
+            else:
+                text += f"{space}- {item}\n"
+
+    return text
+
+
+
+folder_name = "courses_data"
+os.makedirs(folder_name, exist_ok=True)
+
+
+url = "https://api.sunbeaminfo.in/api/v1/courses?page=1&limit=100&domain=sunbeaminfo.in"
+
+response = requests.get(url)
+
+if response.status_code != 200:
+    print("Failed to fetch course list")
+    exit()
+
+resp = response.json()
+
+if not resp.get("success"):
+    print("API returned failure")
+    exit()
+
+courses = resp.get("data", [])
+
+print(f"Found {len(courses)} courses\n")
+
+for course in courses:
+
+    try:
+        slug = course.get("slug")
+        course_name = course.get("name", slug)
+
+        print(f"Processing: {course_name}")
+
+        course_url = (
+            f"https://api.sunbeaminfo.in/api/v1/courses/"
+            f"{slug}?domain=sunbeaminfo.in"
+        )
+
+        course_response = requests.get(course_url)
+
+        if course_response.status_code != 200:
+            print("Failed to fetch details")
+            continue
+
+        course_json = course_response.json()
+
+        # Convert JSON to text
+        text_content = json_to_text(course_json)
+
+        # Safe filename
+        filename = "".join(
+            c if c.isalnum() else "_"
+            for c in course_name
+        )
+
+        file_path = os.path.join(
+            folder_name,
+            f"{filename}.txt"
+        )
+
+        # Save file
+        with open(
+            file_path,
+            "w",
+            encoding="utf-8"
+        ) as f:
+            f.write(text_content)
+
+        print(f"Saved -> {file_path}")
+        print("-" * 50)
+
+    except Exception as e:
+        print(f"Error processing {course_name}")
+        print(e)
+
+print("\nAll course files generated successfully.")
