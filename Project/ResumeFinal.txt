@@ -1,0 +1,181 @@
+import streamlit as st
+import tempfile
+import chromadb
+import os
+import json
+
+from dotenv import load_dotenv
+from langchain_community.document_loaders import PyPDFLoader
+from langchain.chat_models import init_chat_model
+from langchain.embeddings import init_embeddings
+from langchain.agents import create_agent
+from langchain.tools import tool
+
+load_dotenv()
+
+# ======================================
+# LLM
+# ======================================
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+llm = init_chat_model(
+    model="llama-3.3-70b-versatile",
+    model_provider="openai",
+    base_url="https://api.groq.com/openai/v1",
+    api_key=GROQ_API_KEY
+)
+
+# ======================================
+# EMBEDDING MODEL
+# ======================================
+
+embed_model = init_embeddings(
+    model="text-embedding-nomic-embed-text-v1.5",
+    provider="openai",
+    base_url="http://127.0.0.1:1234/v1",
+    api_key="not-needed",
+    check_embedding_ctx_length=False
+)
+
+# ======================================
+# CHROMADB
+# ======================================
+
+db = chromadb.PersistentClient(path="./knowledge_base")
+
+collection = db.get_or_create_collection(
+    "documents"
+)
+
+# ======================================
+# TOOL
+# ======================================
+
+@tool
+def search_documents(query: str):
+    """Search uploaded documents"""
+
+    query_embedding = embed_model.embed_query(query)
+
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=3
+    )
+
+    docs = results["documents"][0]
+    metas = results["metadatas"][0]
+
+    output = []
+
+    for doc, meta in zip(docs, metas):
+
+        output.append({
+            "file": meta["source"],
+            "content": doc[:3000]
+        })
+
+    return json.dumps(output)
+
+# ======================================
+# UI
+# ======================================
+
+st.title("Agentic RAG PDF Chatbot")
+
+uploaded_files = st.file_uploader(
+    "Upload PDFs",
+    type=["pdf"],
+    accept_multiple_files=True
+)
+
+# ======================================
+# CREATE KNOWLEDGE BASE
+# ======================================
+
+if uploaded_files:
+
+    if st.button("Create Knowledge Base"):
+
+        for pdf in uploaded_files:
+
+            with tempfile.NamedTemporaryFile(
+                delete=False,
+                suffix=".pdf"
+            ) as tmp:
+
+                tmp.write(pdf.read())
+                pdf_path = tmp.name
+
+            loader = PyPDFLoader(pdf_path)
+            pages = loader.load()
+
+            text = ""
+
+            for page in pages:
+                text += page.page_content
+
+            embedding = embed_model.embed_documents([text])
+
+            pdf_id = pdf.name
+
+            try:
+                collection.delete(ids=[pdf_id])
+            except:
+                pass
+
+            collection.add(
+                ids=[pdf_id],
+                embeddings=embedding,
+                documents=[text],
+                metadatas=[
+                    {
+                        "source": pdf.name
+                    }
+                ]
+            )
+
+        st.success("Knowledge Base Created")
+
+# ======================================
+# ASK QUESTION
+# ======================================
+
+question = st.text_input(
+    "Ask Question"
+)
+
+if st.button("Get Answer"):
+
+    if question:
+
+        # Agent
+        agent = create_agent(
+            model=llm,
+            tools=[search_documents],
+            system_prompt="""
+            You are an AI Assistant.
+
+            Rules:
+            1. Use search_documents tool.
+            2. Answer only from tool output.
+            3. Mention source file name.
+            4. Do not hallucinate.
+            """
+        )
+
+        result = agent.invoke(
+            {
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": question
+                    }
+                ]
+            }
+        )
+
+        answer = result["messages"][-1].content
+
+        st.subheader("Answer")
+        st.write(answer)
